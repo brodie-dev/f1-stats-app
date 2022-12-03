@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -9,13 +10,17 @@ export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
+  const queryClient = new QueryClient()
+
   if (!isLoadingComplete) {
     return null;
   } else {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
+        <QueryClientProvider client={queryClient}>
+          <Navigation colorScheme={colorScheme} />
+          <StatusBar />
+        </QueryClientProvider>
       </SafeAreaProvider>
     );
   }
