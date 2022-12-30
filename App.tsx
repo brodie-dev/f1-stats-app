@@ -1,4 +1,3 @@
-import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
@@ -18,12 +17,10 @@ export default function App() {
   } else {
     return (
       <NativeBaseProvider>
-        <ActionSheetProvider>
-          <QueryClientProvider client={queryClient}>
-            <Navigation colorScheme={colorScheme} />
-            <StatusBar />
-          </QueryClientProvider>
-        </ActionSheetProvider>
+        <QueryClientProvider client={queryClient}>
+          <Navigation colorScheme={colorScheme} />
+          <StatusBar />
+        </QueryClientProvider>
       </NativeBaseProvider>
     );
   }

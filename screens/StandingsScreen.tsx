@@ -1,6 +1,5 @@
-import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
-import { Box, Center, FlatList, Heading, HStack, Spinner, VStack, Text, Spacer, Pressable, Select } from 'native-base';
+import { Box, Center, FlatList, Heading, HStack, Spinner, VStack, Text, Spacer, Select } from 'native-base';
 import { useEffect, useState } from 'react';
 import { useSeasonsQuery } from '../hooks/queries/useSeasonsQuery';
 import { useStandingsQuery } from '../hooks/queries/useStandingsQuery';
