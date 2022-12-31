@@ -1,9 +1,10 @@
+import { useNavigation } from '@react-navigation/native';
 import { AspectRatio, Box, Button, Center, FlatList, Heading, HStack, Image, Spinner, Stack, Text } from 'native-base';
-import { Linking } from 'react-native';
 import { useNewsQuery } from '../hooks/queries/useNewsQuery';
 import { timeSince } from '../utils/timeSince';
 
 const NewsScreen = () => {
+  const navigation = useNavigation()
   const { data, isLoading } = useNewsQuery()
 
   if (isLoading) {
@@ -77,7 +78,11 @@ const NewsScreen = () => {
                   >
                     Source: {item.source}
                   </Text>
-                  <Button size="sm" variant="link" onPress={() => Linking.openURL(item.url)}>
+                  <Button
+                    size="sm"
+                    variant="link"
+                    onPress={() => navigation.navigate("WebView", { uri: item.url, title: item.title })}
+                  >
                     READ MORE
                   </Button>
                 </HStack>
