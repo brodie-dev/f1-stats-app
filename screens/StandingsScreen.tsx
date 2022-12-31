@@ -7,12 +7,11 @@ import { useStandingsQuery } from '../hooks/queries/useStandingsQuery';
 const StandingsScreen: React.FC = () => {
   const navigation = useNavigation()
   const [selectedSeason, setSeason] = useState<number | null>(null)
+  const { data: seasonsData } = useSeasonsQuery()
   const {
     isLoading: isStandingsLoading,
-    data: standingsData
-  
+    data: standingsData,
   } = useStandingsQuery(selectedSeason ?? undefined)
-  const { data: seasonsData } = useSeasonsQuery()
 
   useEffect(() => {
     navigation.setOptions({
@@ -32,7 +31,7 @@ const StandingsScreen: React.FC = () => {
               return <Select.Item key={year} label={year} value={year} />
             })}    
           </Select>
-      )
+        )
       : null
     })
   }, [selectedSeason, seasonsData, standingsData?.season])
@@ -65,44 +64,44 @@ const StandingsScreen: React.FC = () => {
   )
  }
 
- return (
-      <FlatList
-        data={standingsData.standings}
-        keyExtractor={item => item.driver.id} 
-        renderItem={({ item },) => (
-          <Box
-            borderBottomWidth="1"
-            borderColor="muted.800"
-            pl={["0", "4"]}
-            pr={["0", "5"]}
-            py="2"
-          >
-            <HStack space={[2, 3]} justifyContent="space-between" alignItems="center">
-              <Center roundedTopRight="lg" roundedBottomRight="xs" width={50} px="1" py="1" bg="gray.800">
-                <Heading color="coolGray.100">{item.position}</Heading>
-              </Center>
-              <VStack>
-                <Text bold>
-                  {item.driver.firstName} {item.driver.lastName}
-                </Text>
-                <Text>
-                  {item.points} points
-                </Text>
-              </VStack>
-              <Spacer />
-              <Center paddingX="1">
-                <Text
-                  fontSize="xs"
-                  alignSelf="flex-start"
-                >
-                  {item.constructor.name}
-                </Text>
-              </Center>
-            </HStack>
-          </Box>
-          )}
-        />
- )
+  return (
+    <FlatList
+      data={standingsData.standings}
+      keyExtractor={item => item.driver.id} 
+      renderItem={({ item }) => (
+        <Box
+          borderBottomWidth="1"
+          borderColor="muted.800"
+          pl={["0", "4"]}
+          pr={["0", "5"]}
+          py="2"
+        >
+          <HStack space={[2, 3]} justifyContent="space-between" alignItems="center">
+            <Center roundedTopRight="lg" roundedBottomRight="xs" width={50} px="1" py="1" bg="gray.800">
+              <Heading color="coolGray.100">{item.position}</Heading>
+            </Center>
+            <VStack>
+              <Text bold>
+                {item.driver.firstName} {item.driver.lastName}
+              </Text>
+              <Text>
+                {item.points} points
+              </Text>
+            </VStack>
+            <Spacer />
+            <Center paddingX="1">
+              <Text
+                fontSize="xs"
+                alignSelf="flex-start"
+              >
+                {item.constructor.name}
+              </Text>
+            </Center>
+          </HStack>
+        </Box>
+      )}
+    />
+  )
 }
 
 export default StandingsScreen
