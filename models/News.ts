@@ -4,7 +4,7 @@ export interface NewsItem {
   description: string
   url: string
   source: string
-  image: string | null
+  image: string
   publishDate: string
 }
 

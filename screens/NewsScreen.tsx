@@ -41,7 +41,7 @@ const NewsScreen = () => {
             >
               <Box>
                 <AspectRatio w="100%" ratio={16 / 9}>
-                  <Image source={{ uri: item.image || "" }} alt="image" />
+                  <Image source={{ uri: item.image }} alt={`${item.title} cover image`} />
                 </AspectRatio>
                 <Center
                   bg="black"
