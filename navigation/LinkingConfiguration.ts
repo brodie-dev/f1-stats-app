@@ -15,9 +15,9 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          News: {
             screens: {
-              TabOneScreen: 'one',
+              NewsScreen: 'news',
             },
           },
           Standings: {
@@ -27,7 +27,7 @@ const linking: LinkingOptions<RootStackParamList> = {
           },
         },
       },
-      Modal: 'modal',
+      WebView: 'webview',
       NotFound: '*',
     },
   },
